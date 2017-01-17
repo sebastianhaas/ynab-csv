@@ -16,7 +16,7 @@ angular.element(document).ready ->
             scope.fileread = loadEvent.target.result
 
 
-        reader.readAsText changeEvent.target.files[0]
+        reader.readAsText(changeEvent.target.files[0], scope.$parent.fileEncoding)
 
   ]
 
@@ -50,7 +50,7 @@ angular.element(document).ready ->
           scope.$apply ->
             scope.dropzone = loadEvent.target.result
 
-        reader.readAsText event.dataTransfer.files[0]
+        reader.readAsText(event.dataTransfer.files[0], scope.$parent.fileEncoding)
 
   ]
 
@@ -67,6 +67,8 @@ angular.element(document).ready ->
       Memo:     'Memo'
       Outflow:  'Amount'
       Inflow:   'Amount'
+    $scope.encodings = ['UTF-8', 'ISO-8859-1']
+    $scope.fileEncoding = 'UTF-8'
     $scope.data_object = new DataObject()
 
     $scope.$watch 'data.source', (newValue, oldValue) ->

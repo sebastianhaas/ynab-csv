@@ -4,7 +4,11 @@
   <head>
     <title>YNAB CSV Converter</title>
     <link rel="icon" type="image/png" href="images/icon16.png" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
     <link rel="stylesheet" type="text/css" href="./app.css" />
@@ -34,11 +38,23 @@
         <div id='upload_wrapper' ng-if='!data_object.base_json'>
           <div id='drop_text'>Drop File</div>
           <br>
-          <!-- <div class='btn btn-primary'>Or Choose</div> -->
-          <div class='fileUpload btn btn-primary'>
-            <span>Or Choose <i class='fa fa-folder-open'></i></span>
-            <input id='file' type='file' fileread='data.source' />
-          </div>
+          
+          <form class="form-inline">
+            <!-- <div class='btn btn-primary'>Or Choose</div> -->
+            <div class='fileUpload btn btn-primary'>
+              <span>Or Choose <i class='fa fa-folder-open'></i></span>
+              <input id='file' type='file' fileread='data.source' />
+            </div>
+
+            <div class="form-group">
+              <label class="sr-only" for="fileEncoding">File encoding</label>
+              <select ng-model="fileEncoding"
+                      ng-options="enc for enc in encodings"
+                      class="form-control">
+              </select>
+            </div>
+          </form>
+
         </div>
 
         <div id='tool_wrapper' ng-if='data_object.base_json'>
